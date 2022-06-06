@@ -1,0 +1,55 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Credit card portal</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous" />
+</head>
+<body>
+
+<div class="container">
+
+
+    <h3>Add/Update card </h3>
+    <hr/>
+
+    <form th:action="@{/saveCard/{user} (user=${userid})}" th:object="${creditCardDto}" method="POST">
+
+        <input type="text" th:field="*{cardNumber}" class="form-control col-4 mb-4" placeholder="Enter Card Number" />
+
+        <input type="text" th:field="*{holderName}" class="form-control col-4 mb-4" placeholder="Enter Holder Name" />
+
+        <input type="text" th:field="*{expiryMonth}" class="form-control col-4 mb-4" placeholder="Enter Expiry Name" />
+
+        <button type="submit" class="btn btn-primary col-2">Save</button>
+        <!--				<input type="hidden" th:field="*{id}" />-->
+    </form>
+    <hr/>
+    <a th:href="@{/searchCard/{user} (user=${userid})}" class="btn btn-primary">Search cards</a>
+    <br/><br/>
+    <hr/>
+    <a th:href="@{/searchCard/{user} (user=${userid})}" class="btn btn-primary">Search cards</a>
+    <br/><br/>
+    <hr/>
+
+    <div th:text="${successMessage}" style="color:green;"> </div>
+</div>
+<div class="container">
+
+    <hr/>
+
+    <ul>
+        <li th:each="item : ${errors}" th:text="${item} " style="color:red;">Item description here...</li>
+    </ul>
+
+    <hr/>
+    <br/><br/>
+    <a th:href="@{/landingPage}" class="btn btn-primary">Logout</a>
+    <br/><br/>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>List Cards</title>
+
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous" />
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>Search cards</h3>
+
+    <hr/>
+
+    <form th:action="@{/searchCard/{user}/cards (user=${userid})}">
+        <input type="text" th:name="cardnumber"/>
+        <button type="submit" class="btn btn-primary col-2">Search</button>
+    </form>
+    <hr/>
+
+    <hr/>
+    <a th:href="@{/landingPage}" class="btn btn-primary">Logout</a>
+    <br/><br/>
+    <table class="table table-bordered table-striped" id="employeeTable">
+
+        <thead>
+        <tr>
+            <th>Card Number</th>
+            <th>Holder</th>
+            <th>Expiry</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="card: ${cards}">
+            <td th:text="${card.cardNumber} " />
+            <td th:text="${card.holderName}" />
+            <td th:text="${card.expiryMonth}" />
+            <td>
+                <p>
+                    <a th:href="@{/updateCard/{user}/card/{creditCardId} (user=${userid}, creditCardId=${card.cardId})}" class="btn btn-primary">Edit</a>
+                    &nbsp
+                    <a th:href="@{/deleteCard/{user}/card/{creditCardId} (user=${userid}, creditCardId=${card.cardId})}" class="btn btn-primary">Delete</a>
+                </p>
+            </td>
+
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>Credit card portal</title>
+		
+		<link rel="stylesheet" 
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
+			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+			crossorigin="anonymous" />
+	</head>
+	<body>
+
+	<h2>Credit card portal</h2>
+		
+		<div class="container">
+		
+			<h3>Create new account </h3>
+			<hr/>
+			
+			<form th:action="@{/signUp}" th:object="${user}" method="POST">
+				
+				<input type="text" th:field="*{name}" class="form-control col-4 mb-4" placeholder="Enter Name" />
+				
+				<input type="text" th:field="*{email}" class="form-control col-4 mb-4" placeholder="Enter email" />
+				
+				<input type="password" th:field="*{password}" class="form-control col-4 mb-4" placeholder="Enter password" />
+				
+				<button type="submit" class="btn btn-primary col-2">Sign Up</button>
+<!--				<input type="hidden" th:field="*{id}" />-->
+				
+			</form>
+			<hr/>
+
+
+			<h3>Login to your account</h3>
+			<hr/>
+			<form th:action="@{/login}" th:object="${user}" method="POST">
+
+				<input type="text" th:field="*{email}" class="form-control col-4 mb-4" placeholder="Enter email" />
+
+				<input type="password" th:field="*{password}" class="form-control col-4 mb-4" placeholder="Enter password" />
+
+				<button type="submit" class="btn btn-primary col-2">Login</button>
+				<!--				<input type="hidden" th:field="*{id}" />-->
+
+			</form>
+			<hr/>
+
+			<div th:text="${loginError}" style="color:red;"> </div>
+		</div>
+
+	</body>
+</html>
